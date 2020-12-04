@@ -111,10 +111,32 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        // iterate over an ArrayList of
-        for (HashMap someJob: someJobs) {
-            System.out.println(someJob);
+        // iterate over an ArrayList of someJobs
+        if (someJobs.size() == 0) {
+            System.out.println("No search results.");
+            return;
         }
-        //System.out.println("printJobs is not implemented yet");
+        for (HashMap someJob: someJobs) {
+            System.out.println();
+            System.out.println("*****");
+            // loop through each property in the HashMap of someJob
+            for (Object job: someJob.keySet()) {
+                System.out.println(job + ": " + someJob.get(job));
+            }
+            System.out.println("*****");
+        }
     }
 }
+//    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+//        // iterate over an ArrayList of someJobs
+//        for (HashMap someJob: someJobs) {
+//            System.out.println();
+//            System.out.println("*****");
+//            // loop through each property in the HashMap of someJob
+//            for (Object job: someJob.keySet()) {
+//                System.out.println(job + ": " + someJob.get(job));
+//            }
+//            System.out.println("*****");
+//        }
+//    }
+//}
