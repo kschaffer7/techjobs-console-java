@@ -133,18 +133,21 @@ public class JobData {
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
         // load data, if not already loaded
         loadData();
-        // creates an empty ArrayList that will contain jobs that match the string value from the search
+        // creates an empty ArrayList that will eventually contain jobs that match the string value from the search
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
         // looping through the entire job list by each row
         for (HashMap<String, String> job : allJobs) {
+            // sets jobMatches to false until they get tested by the if statement
             Boolean jobMatches = false;
             // loop through each value within the HashMap of job
             for (Object jobKey: job.keySet()){
+                // checks to see if the search value is contained in the job hashmap
                 if (job.get(jobKey).toLowerCase().contains(value.toLowerCase())) {
-                    // if there is a match, add the job to the jobs ArrayList
+                    // sets job to be a true jobMatch if it passes the if statement.
                     jobMatches = true;
                 }
             }
+            // if there is a match, add the job to the jobs ArrayList
             if (jobMatches){
                 jobs.add(job);
             }
