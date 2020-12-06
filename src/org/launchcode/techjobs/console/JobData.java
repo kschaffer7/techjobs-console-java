@@ -75,7 +75,7 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-
+//
             if (aValue.contains(value)) {
                 jobs.add(row);
             }
@@ -125,4 +125,53 @@ public class JobData {
         }
     }
 
+    //Make case insensitive
+    // new (public static) method that will search for a string within each of the columns. Name findByValue.
+    // public: any class can call this method aka TechJobs;
+    // static: a method of the class that doesn't require an instance of that class to be created
+    // ArrayList<HashMap<String, String>>: This method returns an ArrayList of HashMaps where the key and value are both strings
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+        // load data, if not already loaded
+        loadData();
+        // creates an empty ArrayList that will contain jobs that match the string value from the search
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        // looping through the entire job list by each row
+        for (HashMap<String, String> job : allJobs) {
+            Boolean jobMatches = false;
+            // loop through each value within the HashMap of job
+            for (Object jobKey: job.keySet()){
+                if (job.get(jobKey).toLowerCase().contains(value.toLowerCase())) {
+                    // if there is a match, add the job to the jobs ArrayList
+                    jobMatches = true;
+                }
+            }
+            if (jobMatches){
+                jobs.add(job);
+            }
+        }
+        // return the successfully matched jobs
+        return jobs;
+    }
+//     case sensitive version
+//     new (public static) method that will search for a string within each of the columns. Name findByValue.
+//     public: any class can call this method aka TechJobs;
+//     static: a method of the class that doesn't require an instance of that class to be created
+//     ArrayList<HashMap<String, String>>: This method returns an ArrayList of HashMaps where the key and value are both strings
+//    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+//
+//        // load data, if not already loaded
+//        loadData();
+//        // creates an empty ArrayList that will contain jobs that match the string value from the search
+//        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+//        // looping through the entire job list by each row
+//        for (HashMap<String, String> job : allJobs) {
+//            // to see if the typed search matches any column in the job
+//            if (job.containsValue(value)){
+//                // if there is a match, add the job to the jobs ArrayList
+//                jobs.add(job);
+//            }
+//        }
+//        // return the successfully matched jobs
+//        return jobs;
+//    }
 }

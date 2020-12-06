@@ -62,7 +62,8 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    //System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -110,33 +111,27 @@ public class TechJobs {
     }
 
     // Print a list of jobs
+    // Private and is only accessed within TechJobs Class
+    // static: a method of the class that doesn't require an instance of that class to be created
+    // void: not returning any results, just processing information
+    // Takes in an ArrayList of jobs (someJobs) as its parameter
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        // iterate over an ArrayList of someJobs
+        // Checking to see if someJobs contains 0 jobs.
+        // If no jobs ae found, print message and then the following loop will have nothing to execute on.
         if (someJobs.size() == 0) {
             System.out.println("No search results.");
-            return;
         }
+        // iterate over an ArrayList of someJobs
         for (HashMap someJob: someJobs) {
-            System.out.println();
-            System.out.println("*****");
-            // loop through each property in the HashMap of someJob
-            for (Object job: someJob.keySet()) {
-                System.out.println(job + ": " + someJob.get(job));
+            // creates new line and adds asterisks for formatting
+            System.out.println("\n*****");
+            // loop through each key within the HashMap of someJob
+            for (Object jobKey: someJob.keySet()) {
+                // print the key and the value of the iterated key
+                System.out.println(jobKey + ": " + someJob.get(jobKey));
             }
+            //adds asterisks for formatting
             System.out.println("*****");
         }
     }
 }
-//    private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-//        // iterate over an ArrayList of someJobs
-//        for (HashMap someJob: someJobs) {
-//            System.out.println();
-//            System.out.println("*****");
-//            // loop through each property in the HashMap of someJob
-//            for (Object job: someJob.keySet()) {
-//                System.out.println(job + ": " + someJob.get(job));
-//            }
-//            System.out.println("*****");
-//        }
-//    }
-//}
